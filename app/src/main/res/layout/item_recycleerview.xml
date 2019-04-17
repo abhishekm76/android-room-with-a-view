@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <android.support.constraint.Guideline
@@ -14,40 +14,40 @@
         app:layout_constraintGuide_begin="16dp" />
 
     <TextView
-        android:id="@+id/datetextView"
+        android:id="@+id/datetextViewmonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/datetextView2"
+        app:layout_constraintTop_toBottomOf="@+id/datetextViewdate"
         tools:text="Jan" />
 
     <TextView
-        android:id="@+id/datetextView3"
+        android:id="@+id/datetextViewyear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="TextView"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/notetextView"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/datetextView"
         tools:text="2017" />
 
     <TextView
-        android:id="@+id/datetextView2"
+        android:id="@+id/datetextViewdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         tools:layout_editor_absoluteY="2dp"
@@ -56,11 +56,12 @@
     <TextView
         android:id="@+id/categorytextView"
         android:layout_width="0dp"
-        
+
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         tools:layout_editor_absoluteY="2dp" />
@@ -73,7 +74,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/categorytextView" />
@@ -86,7 +88,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
-        android:textAppearance="@android:style/TextAppearance.Material.Caption"
+
+        android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/subcategorytextView" />
@@ -100,7 +103,7 @@
 
     <TextView
         android:id="@+id/modetextView"
-        android:layout_width="0dp"
+        android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -110,13 +113,14 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/amounttextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Amount"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/notetextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"

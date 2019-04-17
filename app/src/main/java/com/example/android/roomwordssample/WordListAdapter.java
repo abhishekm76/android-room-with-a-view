@@ -39,12 +39,12 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         private WordViewHolder(View itemView) {
             super(itemView);
-            itemCategory = itemView.findViewById(R.id.category);
-            itemDate = itemView.findViewById(R.id.date);
-            amount=itemView.findViewById(R.id.amount);
-            note=itemView.findViewById(R.id.note);
-            mode=itemView.findViewById(R.id.mode);
-            itemSubcat=itemView.findViewById(R.id.subcat);
+            itemCategory = itemView.findViewById(R.id.categorytextView);
+            itemDate = itemView.findViewById(R.id.datetextViewdate);
+            amount=itemView.findViewById(R.id.amounttextView);
+            note=itemView.findViewById(R.id.notetextView);
+            mode=itemView.findViewById(R.id.modetextView);
+            itemSubcat=itemView.findViewById(R.id.subcategorytextView);
 
 
         }
@@ -59,7 +59,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.item_recycleerview, parent, false);
         return new WordViewHolder(itemView);
     }
 
