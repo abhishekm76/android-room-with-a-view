@@ -39,6 +39,13 @@ public class Word {
     @NonNull
     @ColumnInfo(name = "word")
     private String mWord;
+    @ColumnInfo(name = "subCat")
+    private String subCat;
+    private String note;
+    private String mode;
+    private String dateentry;
+    private float amount;
+
 
     public Word(@NonNull String word) {
         this.mWord = word;
@@ -48,4 +55,23 @@ public class Word {
     public String getWord() {
         return this.mWord;
     }
+
+    public String getSubCat() { return subCat;  }
+    public void setSubCat(String subCat) {  this.subCat = subCat;   }
+
+    public String getNote() { return note;  }
+    public void setNote (String pnote) {  this.note = pnote;   }
+
+    public String getMode() { return mode;  }
+    public void setMode(String pmode) {  this.mode= pmode;   }
+
+    public String getDateentry() { return dateentry;  }
+    public void setDateentry(String pdate) {  this.dateentry = pdate;   }
+
+    public float getAmount() { return amount;  }
+    public void setAmount(float pamount) {  this.amount = pamount;   }
+
+
+
+
 }

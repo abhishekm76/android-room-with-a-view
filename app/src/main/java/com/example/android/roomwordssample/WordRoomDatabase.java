@@ -91,8 +91,24 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             mDao.deleteAll();
 
             Word word = new Word("Hello");
+            word.setSubCat("description1");
+            word.setAmount(345);
+            word.setDateentry("today");
+            word.setMode("Cash");
+            word.setNote("this is the expense");
+
             mDao.insert(word);
+
+
+
+
             word = new Word("World");
+            word.setSubCat("description2");
+            word.setAmount(90000);
+            word.setDateentry("yesterda");
+            word.setMode("CArd");
+            word.setNote("these are the notes that we can show");
+
             mDao.insert(word);
             return null;
         }

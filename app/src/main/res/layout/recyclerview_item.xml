@@ -13,14 +13,104 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+
     <TextView
-        android:id="@+id/textView"
-        style="@style/word_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
-</LinearLayout>
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="72dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-7.6dp"
+        android:text="@string/category"
+        android:textAppearance="@style/category"
+        android:lineSpacingExtra="5sp"
+        android:gravity="top"
+        />
+
+    <TextView
+        android:id="@+id/subcat"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="72dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="@string/body_2"
+        android:textAppearance="@style/body_2"
+        android:lineSpacingExtra="4sp"
+        android:gravity="top"
+        />
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="72dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="37dp"
+        android:text="@string/noteline"
+        android:textAppearance="@style/body_2"
+        android:lineSpacingExtra="6sp"
+        android:gravity="top"
+        />
+
+    <TextView
+        android:id="@+id/mode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toRightOf="@id/category"
+        android:gravity="top"
+        android:lineSpacingExtra="5sp"
+        android:text="@string/cash"
+        android:textAppearance="@style/cash" />
+
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/mode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+
+        android:layout_toRightOf="@id/note"
+
+        android:lineSpacingExtra="8sp"
+        android:text="@string/value"
+        android:textAppearance="@style/some_id" />
+
+
+</RelativeLayout>

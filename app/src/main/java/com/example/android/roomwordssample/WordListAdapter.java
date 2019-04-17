@@ -30,11 +30,23 @@ import java.util.List;
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
 
     class WordViewHolder extends RecyclerView.ViewHolder {
-        private final TextView wordItemView;
+        private final TextView itemCategory;
+        private final TextView itemDate;
+        private final TextView amount;
+        private final TextView note;
+        private final  TextView mode;
+        private final TextView itemSubcat;
 
         private WordViewHolder(View itemView) {
             super(itemView);
-            wordItemView = itemView.findViewById(R.id.textView);
+            itemCategory = itemView.findViewById(R.id.category);
+            itemDate = itemView.findViewById(R.id.date);
+            amount=itemView.findViewById(R.id.amount);
+            note=itemView.findViewById(R.id.note);
+            mode=itemView.findViewById(R.id.mode);
+            itemSubcat=itemView.findViewById(R.id.subcat);
+
+
         }
     }
 
@@ -54,7 +66,13 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @Override
     public void onBindViewHolder(WordViewHolder holder, int position) {
         Word current = mWords.get(position);
-        holder.wordItemView.setText(current.getWord());
+        holder.itemCategory.setText(current.getWord());
+        holder.itemDate.setText(current.getDateentry());
+         holder.amount.setText(String.valueOf(current.getAmount()));
+        holder.note.setText(current.getNote());
+        holder.mode.setText(current.getMode());
+        holder.itemSubcat.setText(current.getSubCat());
+
     }
 
     void setWords(List<Word> words) {
