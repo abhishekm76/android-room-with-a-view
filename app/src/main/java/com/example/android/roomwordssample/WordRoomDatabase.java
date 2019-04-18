@@ -20,9 +20,12 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+
+import java.util.Date;
 
 /**
  * This is the backend. The database. This used to be done by the OpenHelper.
@@ -30,6 +33,7 @@ import android.support.annotation.NonNull;
  */
 
 @Database(entities = {Word.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class WordRoomDatabase extends RoomDatabase {
 
     public abstract WordDao wordDao();
@@ -90,10 +94,11 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             // Not needed if you only populate on creation.
             mDao.deleteAll();
 
-            Word word = new Word("Hello");
+            Word word = new Word("1");
             word.setSubCat("description1");
             word.setAmount(345);
-            word.setDateentry("today");
+            Date date=java.util.Calendar.getInstance().getTime();
+            word.setDateentry(date);
             word.setMode("Cash");
             word.setNote("this is the expense");
 
@@ -102,10 +107,14 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
 
 
-            word = new Word("World");
+            word = new Word("2");
             word.setSubCat("description2");
             word.setAmount(90000);
-            word.setDateentry("yesterda");
+
+            Date date1=java.util.Calendar.getInstance().getTime();
+            word.setDateentry(date1);
+
+           // word.setDateentry("24");
             word.setMode("CArd");
             word.setNote("these are the notes that we can show");
 

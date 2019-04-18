@@ -48,7 +48,10 @@ public class NewWordActivity extends AppCompatActivity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     String word = mEditWordView.getText().toString();
+
                     replyIntent.putExtra(EXTRA_REPLY, word);
+                    replyIntent.putExtra("Note", "tere to");
+
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

@@ -23,6 +23,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.security.PrivateKey;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,6 +35,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView itemCategory;
         private final TextView itemDate;
+        private final TextView itemMonth;
+        private final TextView itemYear;
         private final TextView amount;
         private final TextView note;
         private final  TextView mode;
@@ -41,6 +46,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             super(itemView);
             itemCategory = itemView.findViewById(R.id.categorytextView);
             itemDate = itemView.findViewById(R.id.datetextViewdate);
+            itemMonth= itemView.findViewById(R.id.datetextViewmonth);
+            itemYear = itemView.findViewById(R.id.datetextViewyear);
             amount=itemView.findViewById(R.id.amounttextView);
             note=itemView.findViewById(R.id.notetextView);
             mode=itemView.findViewById(R.id.modetextView);
@@ -67,7 +74,21 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     public void onBindViewHolder(WordViewHolder holder, int position) {
         Word current = mWords.get(position);
         holder.itemCategory.setText(current.getWord());
-        holder.itemDate.setText(current.getDateentry());
+
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        String strDate = dateFormat.format(current.getDateentry());
+        holder.itemDate.setText(strDate);
+
+        DateFormat  monthFormat = new SimpleDateFormat("MMMM");
+        String strDate1 = monthFormat.format(current.getDateentry());
+        holder.itemMonth.setText(strDate1);
+
+        DateFormat  yearFormat = new SimpleDateFormat("YYYY");
+        String strDate2 = yearFormat.format(current.getDateentry());
+        holder.itemYear.setText(strDate2);
+
+
+
          holder.amount.setText(String.valueOf(current.getAmount()));
         holder.note.setText(current.getNote());
         holder.mode.setText(current.getMode());

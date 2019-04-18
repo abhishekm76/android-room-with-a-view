@@ -21,6 +21,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.util.Date;
+
 /**
  * A basic class representing an entity that is a row in a one-column database table.
  *
@@ -35,15 +37,17 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "word_table")
 public class Word {
 
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     @NonNull
+    public int ExpenseID;
+
     @ColumnInfo(name = "word")
     private String mWord;
     @ColumnInfo(name = "subCat")
     private String subCat;
     private String note;
     private String mode;
-    private String dateentry;
+    private Date dateentry;
     private float amount;
 
 
@@ -65,8 +69,8 @@ public class Word {
     public String getMode() { return mode;  }
     public void setMode(String pmode) {  this.mode= pmode;   }
 
-    public String getDateentry() { return dateentry;  }
-    public void setDateentry(String pdate) {  this.dateentry = pdate;   }
+    public Date getDateentry() { return dateentry;  }
+    public void setDateentry(Date pdate) {  this.dateentry = pdate;   }
 
     public float getAmount() { return amount;  }
     public void setAmount(float pamount) {  this.amount = pamount;   }
