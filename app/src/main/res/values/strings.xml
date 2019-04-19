@@ -23,4 +23,41 @@ limitations under the License. -->
     <string name="cash">Mode</string>
     <string name="value">amount</string>
     <string name="noteline">note</string>
+    <string name="edit_text_new_word">Enter a new word</string>
+
+
+
+    <string-array name="category">
+        <item>Maintenance</item>
+        <item>School</item>
+        <item>Food</item>
+        <item>Travel</item>
+        <item>Car</item>
+        <item>Holidays</item>
+        <item>Utilities</item>
+        <item>Prithu</item>
+
+    </string-array>
+
+    <string-array name="subcategory">
+    <item>Princeton</item>
+    <item>Escape</item>
+    <item>Carlton</item>
+    <item>Prithu</item>
+    <item>Phone</item>
+    <item>Electricity</item>
+    </string-array>
+
+    <string-array name="mode">
+        <item>Cash</item>
+        <item>Card</item>
+        <item>Bank</item>
+        <item>Cheque</item>
+        <item>Paytm</item>
+        <item>Kotak</item>
+    </string-array>
+
+
+
+
 </resources>

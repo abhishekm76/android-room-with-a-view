@@ -29,6 +29,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -84,8 +87,23 @@ public class MainActivity extends AppCompatActivity {
            word.setCategory(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
 
            String notetext =data.getStringExtra("Note");
-          // word.setNote("notetext");
-          // word.setCategory("category 1");
+           String amount = data.getStringExtra("Amount");
+           String date1 = data.getStringExtra("date");
+
+           word.setNote(notetext);
+          word.setCategory(amount);
+
+            SimpleDateFormat formatter2=new SimpleDateFormat("dd-MM-yyyy");
+            Date date2= new Date();
+
+
+
+
+
+
+            word.setDateentry(date2);
+
+
 
 
             mWordViewModel.insert(word);

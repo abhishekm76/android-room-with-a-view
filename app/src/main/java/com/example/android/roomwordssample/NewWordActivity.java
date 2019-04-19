@@ -24,6 +24,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Calendar;
+
 /**
  * Activity for entering a word.
  */
@@ -32,25 +34,50 @@ public class NewWordActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
-    private EditText mEditWordView;
+    private EditText meditnote;
+    private EditText meditamount;
+    private EditText meditdate;
+    private int mYear, mMonth, mDay;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_word);
-        mEditWordView = findViewById(R.id.edit_word);
+        setContentView(R.layout.addnewexpenses);
+        meditnote = findViewById(R.id.editTextNote);
+        meditamount=findViewById(R.id.editTextAmount);
+        meditdate=findViewById(R.id.editTextDate);
 
-        final Button button = findViewById(R.id.button_save);
+
+
+        // sets the current date into the edit text - could be improved by moving it out to class
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH)+1;
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        meditdate.setText(mDay+"-"+mMonth+"-"+mYear);
+
+        // this is the line that calls the class
+        EditText myEditText = findViewById(R.id.editTextDate);
+        TextViewDatePicker editTextDatePicker = new TextViewDatePicker(this, myEditText);
+            //TextViewDatePicker editTextDatePicker = new TextViewDatePicker(context, myEditText); //without min date, max date
+
+        final Button button = findViewById(R.id.buttonsave);
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(mEditWordView.getText())) {
+                if (TextUtils.isEmpty(meditnote.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    String word = mEditWordView.getText().toString();
+                    String word = meditnote.getText().toString();
+                    String amount = meditamount.getText().toString();
+                    String date = meditdate.getText().toString();
 
                     replyIntent.putExtra(EXTRA_REPLY, word);
-                    replyIntent.putExtra("Note", "tere to");
+                    replyIntent.putExtra("Note", word);
+                    replyIntent.putExtra("Amount", amount);
+                    replyIntent.putExtra("Date", date);
 
                     setResult(RESULT_OK, replyIntent);
                 }
