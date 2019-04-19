@@ -87,20 +87,27 @@ public class MainActivity extends AppCompatActivity {
            word.setCategory(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
 
            String notetext =data.getStringExtra("Note");
-           String amount = data.getStringExtra("Amount");
-           String date1 = data.getStringExtra("date");
+           Float amountf = (Float) data.getFloatExtra("Amount",1);
+           String datetext = data.getStringExtra("Date");
+            String cattext = data.getStringExtra("Category");
+            String subcattext = data.getStringExtra("SubCat");
+            String modetext = data.getStringExtra("Mode");
 
-           word.setNote(notetext);
-          word.setCategory(amount);
+            word.setNote(notetext);
+          //  word.setDateentry(datetext);
+            word.setCategory(cattext);
+            word.setSubCat(subcattext);
+          word.setAmount(amountf);
+            word.setMode(modetext);
+
 
             SimpleDateFormat formatter2=new SimpleDateFormat("dd-MM-yyyy");
-            Date date2= new Date();
-
-
-
-
-
-
+            Date date2= null;
+            try {
+                date2 = formatter2.parse(datetext);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             word.setDateentry(date2);
 
 

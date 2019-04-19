@@ -23,6 +23,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.Calendar;
 
@@ -37,6 +38,8 @@ public class NewWordActivity extends AppCompatActivity {
     private EditText meditnote;
     private EditText meditamount;
     private EditText meditdate;
+    private Spinner meditCat;
+    private Spinner meditSubCat,mspinmode;
     private int mYear, mMonth, mDay;
 
 
@@ -47,7 +50,9 @@ public class NewWordActivity extends AppCompatActivity {
         meditnote = findViewById(R.id.editTextNote);
         meditamount=findViewById(R.id.editTextAmount);
         meditdate=findViewById(R.id.editTextDate);
-
+        meditCat=findViewById(R.id.spinnerCategory);
+        meditSubCat=findViewById(R.id.spinnerSubcat);
+        mspinmode = findViewById(R.id.spinnerMode);
 
 
         // sets the current date into the edit text - could be improved by moving it out to class
@@ -71,13 +76,23 @@ public class NewWordActivity extends AppCompatActivity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     String word = meditnote.getText().toString();
-                    String amount = meditamount.getText().toString();
+
+
+                    float amount = Float.valueOf(meditamount.getText().toString());
+
+
                     String date = meditdate.getText().toString();
+                    String category = meditCat.getSelectedItem().toString();
+                    String subcategory = meditSubCat.getSelectedItem().toString();
+                    String mode = mspinmode.getSelectedItem().toString();
 
                     replyIntent.putExtra(EXTRA_REPLY, word);
                     replyIntent.putExtra("Note", word);
                     replyIntent.putExtra("Amount", amount);
                     replyIntent.putExtra("Date", date);
+                    replyIntent.putExtra("Category", category);
+                    replyIntent.putExtra("SubCat", subcategory);
+                    replyIntent.putExtra("Mode", mode);
 
                     setResult(RESULT_OK, replyIntent);
                 }
