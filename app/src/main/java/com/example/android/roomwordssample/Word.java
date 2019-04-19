@@ -41,8 +41,8 @@ public class Word {
     @NonNull
     public int ExpenseID;
 
-    @ColumnInfo(name = "word")
-    private String mWord;
+    @ColumnInfo(name = "category")
+    private String Category;
     @ColumnInfo(name = "subCat")
     private String subCat;
     private String note;
@@ -51,13 +51,14 @@ public class Word {
     private float amount;
 
 
-    public Word(@NonNull String word) {
-        this.mWord = word;
+    public Word() {
+
     }
 
-    @NonNull
-    public String getWord() {
-        return this.mWord;
+    public void setCategory(String inword) {  this.Category = inword;   }
+
+    public String getCategory() {
+        return this.Category;
     }
 
     public String getSubCat() { return subCat;  }

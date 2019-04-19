@@ -94,7 +94,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             // Not needed if you only populate on creation.
             mDao.deleteAll();
 
-            Word word = new Word("1");
+            Word word = new Word();
             word.setSubCat("description1");
             word.setAmount(345);
             Date date=java.util.Calendar.getInstance().getTime();
@@ -107,7 +107,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
 
 
-            word = new Word("2");
+            word = new Word();
             word.setSubCat("description2");
             word.setAmount(90000);
 

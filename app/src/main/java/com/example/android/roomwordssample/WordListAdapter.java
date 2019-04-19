@@ -73,7 +73,12 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @Override
     public void onBindViewHolder(WordViewHolder holder, int position) {
         Word current = mWords.get(position);
-        holder.itemCategory.setText(current.getWord());
+        holder.itemCategory.setText(current.getCategory());
+
+
+        if (current.getDateentry()!=null) {
+
+
 
         DateFormat dateFormat = new SimpleDateFormat("dd");
         String strDate = dateFormat.format(current.getDateentry());
@@ -87,7 +92,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         String strDate2 = yearFormat.format(current.getDateentry());
         holder.itemYear.setText(strDate2);
 
-
+        }
 
          holder.amount.setText(String.valueOf(current.getAmount()));
         holder.note.setText(current.getNote());
