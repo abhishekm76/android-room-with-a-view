@@ -17,7 +17,7 @@ limitations under the License. -->
     <string name="action_settings">Settings</string>
     <string name="hint_word">Word…</string>
     <string name="button_save">Save</string>
-    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="empty_not_saved">Entry not saved because the amount is empty.</string>
     <string name="category">category</string>
     <string name="body_2">subcategory</string>
     <string name="cash">Mode</string>

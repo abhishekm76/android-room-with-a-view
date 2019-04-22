@@ -16,14 +16,16 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.util.Date;
 
@@ -61,7 +63,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
     /**
      * Override the onOpen method to populate the database.
      * For this sample, we clear the database every time it is created or opened.
-     *
+     * <p>
      * If you want to populate the database only when the database is created for the 1st time,
      * override RoomDatabase.Callback()#onCreate
      */
@@ -92,34 +94,37 @@ public abstract class WordRoomDatabase extends RoomDatabase {
         protected Void doInBackground(final Void... params) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            mDao.deleteAll();
-
-            Word word = new Word();
-            word.setSubCat("description1");
-            word.setAmount(345);
-            Date date=java.util.Calendar.getInstance().getTime();
-            word.setDateentry(date);
-            word.setMode("Cash");
-            word.setNote("this is the expense");
-
-            mDao.insert(word);
+          //  mDao.deleteAll();
 
 
 
+            //            if (mDao.getAnyWord().length > 1) {
+            if (5 > 1) {
 
-            word = new Word();
-            word.setSubCat("description2");
-            word.setAmount(90000);
+                Word word = new Word();
+                word.setSubCat("description1");
+                word.setAmount(345);
+                Date date = java.util.Calendar.getInstance().getTime();
+                word.setDateentry(date);
+                word.setMode("Cash");
+                word.setNote("this is the expense");
 
-            Date date1=java.util.Calendar.getInstance().getTime();
-            word.setDateentry(date1);
+                mDao.insert(word);
 
-           // word.setDateentry("24");
-            word.setMode("CArd");
-            word.setNote("these are the notes that we can show");
+                word = new Word();
+                word.setSubCat("description2");
+                word.setAmount(90000);
 
-            mDao.insert(word);
-            return null;
+                Date date1 = java.util.Calendar.getInstance().getTime();
+                word.setDateentry(date1);
+
+                // word.setDateentry("24");
+                word.setMode("CArd");
+                word.setNote("these are the notes that we can show");
+
+                mDao.insert(word);
+
+            }return null;
         }
     }
 

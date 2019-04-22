@@ -16,10 +16,11 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Delete;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 
 import java.util.Date;
 
@@ -75,6 +76,8 @@ public class Word {
 
     public float getAmount() { return amount;  }
     public void setAmount(float pamount) {  this.amount = pamount;   }
+
+
 
 
 

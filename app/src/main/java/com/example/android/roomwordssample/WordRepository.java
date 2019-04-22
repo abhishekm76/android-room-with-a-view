@@ -17,7 +17,7 @@ package com.example.android.roomwordssample;
  */
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -55,6 +55,13 @@ class WordRepository {
         new insertAsyncTask(mWordDao).execute(word);
     }
 
+
+    public void deleteexpense(Word word){
+        new deleteWordAsyncTask(mWordDao).execute(word);
+
+    }
+
+
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {
 
         private WordDao mAsyncTaskDao;
@@ -69,4 +76,21 @@ class WordRepository {
             return null;
         }
     }
+    //delete asynctask
+
+    private static class deleteWordAsyncTask extends AsyncTask<Word, Void, Void> {
+        private WordDao mAsyncTaskDao;
+
+        deleteWordAsyncTask(WordDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Word... params) {
+            mAsyncTaskDao.deleteWord(params[0]);
+            return null;
+        }
+    }
+
+
 }

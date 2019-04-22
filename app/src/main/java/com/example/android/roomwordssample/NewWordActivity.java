@@ -18,7 +18,7 @@ package com.example.android.roomwordssample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -72,7 +72,7 @@ public class NewWordActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(meditnote.getText())) {
+                if (TextUtils.isEmpty(meditamount.getText().toString())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     String word = meditnote.getText().toString();
@@ -86,7 +86,7 @@ public class NewWordActivity extends AppCompatActivity {
                     String subcategory = meditSubCat.getSelectedItem().toString();
                     String mode = mspinmode.getSelectedItem().toString();
 
-                    replyIntent.putExtra(EXTRA_REPLY, word);
+                   // replyIntent.putExtra(EXTRA_REPLY, word);
                     replyIntent.putExtra("Note", word);
                     replyIntent.putExtra("Amount", amount);
                     replyIntent.putExtra("Date", date);

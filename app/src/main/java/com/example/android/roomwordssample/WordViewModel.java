@@ -17,8 +17,8 @@ package com.example.android.roomwordssample;
  */
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
@@ -49,4 +49,6 @@ public class WordViewModel extends AndroidViewModel {
     void insert(Word word) {
         mRepository.insert(word);
     }
+
+    void deleteexpense (Word word){mRepository.deleteexpense(word);}
 }
