@@ -61,6 +61,10 @@ class WordRepository {
 
     }
 
+    public void update(Word word){
+        new updateWordAsyncTask(mWordDao).execute(word);
+    }
+
 
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {
 
@@ -92,5 +96,18 @@ class WordRepository {
         }
     }
 
+    private static class updateWordAsyncTask extends AsyncTask<Word, Void, Void> {
+        private WordDao mAsyncTaskDao;
+
+        updateWordAsyncTask(WordDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Word... params) {
+            mAsyncTaskDao.updateWord(params[0]);
+            return null;
+        }
+    }
 
 }

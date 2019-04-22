@@ -17,6 +17,7 @@ package com.example.android.roomwordssample;
  */
 
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -32,6 +33,9 @@ import java.util.List;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
 
+    private OnItemClickListener recyclerClick;
+
+
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView itemCategory;
         private final TextView itemDate;
@@ -39,19 +43,31 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         private final TextView itemYear;
         private final TextView amount;
         private final TextView note;
-        private final  TextView mode;
+        private final TextView mode;
         private final TextView itemSubcat;
+
 
         private WordViewHolder(View itemView) {
             super(itemView);
             itemCategory = itemView.findViewById(R.id.categorytextView);
             itemDate = itemView.findViewById(R.id.datetextViewdate);
-            itemMonth= itemView.findViewById(R.id.datetextViewmonth);
+            itemMonth = itemView.findViewById(R.id.datetextViewmonth);
             itemYear = itemView.findViewById(R.id.datetextViewyear);
-            amount=itemView.findViewById(R.id.amounttextView);
-            note=itemView.findViewById(R.id.notetextView);
-            mode=itemView.findViewById(R.id.modetextView);
-            itemSubcat=itemView.findViewById(R.id.subcategorytextView);
+            amount = itemView.findViewById(R.id.amounttextView);
+            note = itemView.findViewById(R.id.notetextView);
+            mode = itemView.findViewById(R.id.modetextView);
+            itemSubcat = itemView.findViewById(R.id.subcategorytextView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && recyclerClick != null) {
+
+                        recyclerClick.onItemClick(mWords.get(position));
+                    }
+                }
+            });
 
 
         }
@@ -76,25 +92,24 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         holder.itemCategory.setText(current.getCategory());
 
 
-        if (current.getDateentry()!=null) {
+        if (current.getDateentry() != null) {
 
 
+            DateFormat dateFormat = new SimpleDateFormat("dd");
+            String strDate = dateFormat.format(current.getDateentry());
+            holder.itemDate.setText(strDate);
 
-        DateFormat dateFormat = new SimpleDateFormat("dd");
-        String strDate = dateFormat.format(current.getDateentry());
-        holder.itemDate.setText(strDate);
+            DateFormat monthFormat = new SimpleDateFormat("MMMM");
+            String strDate1 = monthFormat.format(current.getDateentry());
+            holder.itemMonth.setText(strDate1);
 
-        DateFormat  monthFormat = new SimpleDateFormat("MMMM");
-        String strDate1 = monthFormat.format(current.getDateentry());
-        holder.itemMonth.setText(strDate1);
-
-        DateFormat  yearFormat = new SimpleDateFormat("YYYY");
-        String strDate2 = yearFormat.format(current.getDateentry());
-        holder.itemYear.setText(strDate2);
+            DateFormat yearFormat = new SimpleDateFormat("YYYY");
+            String strDate2 = yearFormat.format(current.getDateentry());
+            holder.itemYear.setText(strDate2);
 
         }
 
-         holder.amount.setText(String.valueOf(current.getAmount()));
+        holder.amount.setText(String.valueOf(current.getAmount()));
         holder.note.setText(current.getNote());
         holder.mode.setText(current.getMode());
         holder.itemSubcat.setText(current.getSubCat());
@@ -107,7 +122,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     }
 
 
-    public Word getexpenseatposition(int position){
+    public Word getexpenseatposition(int position) {
         return mWords.get(position);
     }
 
@@ -116,6 +131,19 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     public int getItemCount() {
         return mWords.size();
     }
+
+
+    public interface OnItemClickListener {
+        void onItemClick(Word clickedexpenses);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener precyclerClick) {
+        this.recyclerClick = precyclerClick;
+
+    }
+
+
 }
 
 

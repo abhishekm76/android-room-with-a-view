@@ -62,6 +62,11 @@ public class Word {
         return this.Category;
     }
 
+    public int getExpenseID(){return ExpenseID;}
+    public void setExpenseID(int ID){this.ExpenseID = ID;}
+
+
+
     public String getSubCat() { return subCat;  }
     public void setSubCat(String subCat) {  this.subCat = subCat;   }
 

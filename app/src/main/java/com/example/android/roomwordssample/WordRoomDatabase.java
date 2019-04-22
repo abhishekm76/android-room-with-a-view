@@ -99,7 +99,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
 
             //            if (mDao.getAnyWord().length > 1) {
-            if (5 > 1) {
+            if (5 < 1) {
 
                 Word word = new Word();
                 word.setSubCat("description1");

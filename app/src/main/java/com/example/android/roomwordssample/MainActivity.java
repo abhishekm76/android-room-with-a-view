@@ -16,11 +16,12 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,6 +43,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int EDIT_RECYCLER_VIEW_ITEM_CODE = 2;
 
     private WordViewModel mWordViewModel;
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
+                Intent intent = new Intent(MainActivity.this, NewEditWordActivity.class);
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -110,7 +112,21 @@ public class MainActivity extends AppCompatActivity {
         helper.attachToRecyclerView(recyclerView);
 
 
+        adapter.setOnItemClickListener(new WordListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Word clickedexpenses) {
+                Intent intentEdit = new Intent(MainActivity.this, NewEditWordActivity.class);
+                intentEdit.putExtra("ID", clickedexpenses.getExpenseID());
+                intentEdit.putExtra("Date", clickedexpenses.getDateentry().getTime());
+                intentEdit.putExtra("Cat", clickedexpenses.getCategory());
+                intentEdit.putExtra("SubCat", clickedexpenses.getSubCat());
+                intentEdit.putExtra("Note", clickedexpenses.getNote());
+                intentEdit.putExtra("Amount", clickedexpenses.getAmount());
+                intentEdit.putExtra("Mode", clickedexpenses.getMode());
 
+                startActivityForResult(intentEdit, EDIT_RECYCLER_VIEW_ITEM_CODE);
+            }
+        });
 
     }
 
@@ -118,27 +134,27 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-           Word word = new Word();
+            Word word = new Word();
 
-          // word.setCategory(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
+            // word.setCategory(data.getStringExtra(NewEditWordActivity.EXTRA_REPLY));
 
-           String notetext =data.getStringExtra("Note");
-           Float amountf = (Float) data.getFloatExtra("Amount",1);
-           String datetext = data.getStringExtra("Date");
+            String notetext = data.getStringExtra("Note");
+            Float amountf = (Float) data.getFloatExtra("Amount", 1);
+            String datetext = data.getStringExtra("Date");
             String cattext = data.getStringExtra("Category");
             String subcattext = data.getStringExtra("SubCat");
             String modetext = data.getStringExtra("Mode");
 
             word.setNote(notetext);
-          //  word.setDateentry(datetext);
+            //  word.setDateentry(datetext);
             word.setCategory(cattext);
             word.setSubCat(subcattext);
-          word.setAmount(amountf);
+            word.setAmount(amountf);
             word.setMode(modetext);
 
 
-            SimpleDateFormat formatter2=new SimpleDateFormat("dd-MM-yyyy");
-            Date date2= null;
+            SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MM-yyyy");
+            Date date2 = null;
             try {
                 date2 = formatter2.parse(datetext);
             } catch (ParseException e) {
@@ -147,14 +163,52 @@ public class MainActivity extends AppCompatActivity {
             word.setDateentry(date2);
 
 
-
-
             mWordViewModel.insert(word);
+        } else if (requestCode == EDIT_RECYCLER_VIEW_ITEM_CODE && resultCode == RESULT_OK) {
+
+            int ID =data.getIntExtra("ID",-1);
+            //int ID = Integer.parseInt(data.getStringExtra("ID"));
+
+            if (ID != -1) {
+                Word word = new Word();
+                String notetext = data.getStringExtra("Note");
+                Float amountf = (Float) data.getFloatExtra("Amount", 1);
+                String datetext = data.getStringExtra("Date");
+                String cattext = data.getStringExtra("Category");
+                String subcattext = data.getStringExtra("SubCat");
+                String modetext = data.getStringExtra("Mode");
+
+                word.setNote(notetext);
+                //  word.setDateentry(datetext);
+                word.setCategory(cattext);
+                word.setSubCat(subcattext);
+                word.setAmount(amountf);
+                word.setMode(modetext);
+                word.setExpenseID(ID);
+
+
+                SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MM-yyyy");
+                Date date2 = null;
+                try {
+                    date2 = formatter2.parse(datetext);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                word.setDateentry(date2);
+
+
+                mWordViewModel.update(word);
+
+            }
+
+
         } else {
             Toast.makeText(
                     getApplicationContext(),
-                    R.string.empty_not_saved,
+                    "Entry not save",
                     Toast.LENGTH_LONG).show();
         }
     }
+
+
 }
