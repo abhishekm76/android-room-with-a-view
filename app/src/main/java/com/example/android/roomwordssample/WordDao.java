@@ -24,6 +24,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,15 +60,16 @@ public interface WordDao {
     void deleteWord(Word word);
 
     @Query("DELETE FROM word_table WHERE ExpenseID= :expenseID")
-    abstract void deleteByUserId(long expenseID);
+    void deleteByUserId(long expenseID);
 
-    @Query("SELECT * from word_table LIMIT 1")
-    Word[] getAnyWord();
+    @Query("SELECT *  FROM word_table")
+    Word[] getDisCat();
 
     @Update
     void updateWord(Word word);
 
-
+    @Query("SELECT note from word_table")
+     List<String> getCategory();
 
 
 }

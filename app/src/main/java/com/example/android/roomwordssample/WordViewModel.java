@@ -35,16 +35,20 @@ public class WordViewModel extends AndroidViewModel {
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
     private LiveData<List<Word>> mAllWords;
+    private List<String> mCat;
 
     public WordViewModel(Application application) {
         super(application);
         mRepository = new WordRepository(application);
         mAllWords = mRepository.getAllWords();
+
     }
 
     LiveData<List<Word>> getAllWords() {
         return mAllWords;
     }
+
+  //  List<String> getCat (){return mRepository.getCat();}
 
     void insert(Word word) {
         mRepository.insert(word);
@@ -55,4 +59,7 @@ public class WordViewModel extends AndroidViewModel {
     }
 
     void deleteexpense (Word word){mRepository.deleteexpense(word);}
+
+    //public List<String> getCategory() {return mCat;}
+
 }

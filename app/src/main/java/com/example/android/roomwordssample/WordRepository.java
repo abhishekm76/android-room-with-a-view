@@ -17,9 +17,13 @@ package com.example.android.roomwordssample;
  */
 
 import android.app.Application;
-import androidx.lifecycle.LiveData;
-import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +36,10 @@ class WordRepository {
     private WordDao mWordDao;
     private LiveData<List<Word>> mAllWords;
 
+
+    List<String> DisCat = new ArrayList<String>();
+    public static final String TAG = "Category";
+
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
@@ -40,13 +48,28 @@ class WordRepository {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
         mAllWords = mWordDao.getAlphabetizedWords();
-    }
+//        DisCat=mWordDao.getCategory();
+//        Log.d("this is my array", "arr: " + DisCat.get(1).toString());
+   }
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     LiveData<List<Word>> getAllWords() {
         return mAllWords;
     }
+
+
+
+   // List<String> mAllCat = mWordDao.getCategory();
+
+  //  public List<String> getCat() {return mAllCat;    }
+
+
+
+
+
+
+
 
     // You must call this on a non-UI thread or your app will crash.
     // Like this, Room ensures that you're not doing any long running operations on the main
@@ -56,14 +79,16 @@ class WordRepository {
     }
 
 
-    public void deleteexpense(Word word){
+    public void deleteexpense(Word word) {
         new deleteWordAsyncTask(mWordDao).execute(word);
 
     }
 
-    public void update(Word word){
+    public void update(Word word) {
         new updateWordAsyncTask(mWordDao).execute(word);
     }
+
+
 
 
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {

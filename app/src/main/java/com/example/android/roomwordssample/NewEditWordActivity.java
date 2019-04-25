@@ -20,7 +20,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -28,6 +31,7 @@ import android.widget.Spinner;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Activity for entering a word.
@@ -36,7 +40,11 @@ import java.util.Date;
 public class NewEditWordActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
+    public static final String TAG="Categortest  ";
 
+    private WordDao mWordDao;
+
+    private AutoCompleteTextView catautotext;
     private EditText meditnote;
     private EditText meditamount;
     private EditText meditdate;
@@ -55,8 +63,16 @@ public class NewEditWordActivity extends AppCompatActivity {
         meditCat=findViewById(R.id.spinnerCategory);
         meditSubCat=findViewById(R.id.spinnerSubcat);
         mspinmode = findViewById(R.id.spinnerMode);
+        catautotext = findViewById(R.id.catautotext);
+
+
 
         Intent editIntent = getIntent();
+        String[] category = editIntent.getStringArrayExtra("catArray");
+        ArrayAdapter<String> catadapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,category);
+        catautotext.setAdapter(catadapter);
+
+
         if (editIntent.hasExtra("ID")){
             setTitle("Edit Item");
 
@@ -82,15 +98,16 @@ public class NewEditWordActivity extends AppCompatActivity {
             meditdate.setText(mDay+"-"+mMonth+"-"+mYear);
 
 
-            String category[] = getResources().getStringArray(R.array.category);
+
             int catpostion = Arrays.asList(category).lastIndexOf(cat);
             meditCat.setSelection(catpostion);
+            catautotext.setText(cat);
 
-            String subcategory[] = getResources().getStringArray(R.array.subcategory);
+            String[] subcategory = getResources().getStringArray(R.array.subcategory);
             int subcatpostion = Arrays.asList(subcategory).lastIndexOf(subcat);
             meditSubCat.setSelection(subcatpostion);
 
-            String modelist[] = getResources().getStringArray(R.array.mode);
+            String[] modelist = getResources().getStringArray(R.array.mode);
             int modeposition = Arrays.asList(modelist).lastIndexOf(mode);
             mspinmode.setSelection(modeposition);
 
@@ -104,6 +121,9 @@ public class NewEditWordActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH)+1;
         mDay = c.get(Calendar.DAY_OF_MONTH);
         meditdate.setText(mDay+"-"+mMonth+"-"+mYear);
+
+
+
 
         }
 
@@ -129,7 +149,7 @@ public class NewEditWordActivity extends AppCompatActivity {
 
 
                     String date = meditdate.getText().toString();
-                    String category = meditCat.getSelectedItem().toString();
+                    String category = catautotext.getText().toString();
                     String subcategory = meditSubCat.getSelectedItem().toString();
                     String mode = mspinmode.getSelectedItem().toString();
 

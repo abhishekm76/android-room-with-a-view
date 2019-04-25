@@ -16,6 +16,7 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -30,6 +31,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -38,7 +40,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int EDIT_RECYCLER_VIEW_ITEM_CODE = 2;
 
-    private WordViewModel mWordViewModel;
 
+
+    Set<String> hash_Set = new HashSet<String>();
+
+    private WordViewModel mWordViewModel;
+    public static final String TAG ="Test";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+      //  List<String> mAllCat = mWordViewModel.getCategory() ;
+
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final WordListAdapter adapter = new WordListAdapter(this);
@@ -68,8 +81,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
         // Get a new or existing ViewModel from the ViewModelProvider.
         mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+
+
+
+
+       // Log.d("check",wordsextract.toString());
 
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
@@ -79,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(@Nullable final List<Word> words) {
                 // Update the cached copy of the words in the adapter.
                 adapter.setWords(words);
+
+
+                for (int counter=0; counter<words.size(); counter++){
+                    Log.d ("sizer", words.get(counter).getCategory());
+                    hash_Set.add(words.get(counter).getCategory());
+
+
+                }
+
+
             }
         });
 
@@ -86,7 +116,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] categoryNames = hash_Set.toArray(new String[hash_Set.size()]);
+
+                Log.d("hasset",hash_Set.toString());
+
+
                 Intent intent = new Intent(MainActivity.this, NewEditWordActivity.class);
+                intent.putExtra("catArray" , categoryNames);
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -132,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 intentEdit.putExtra("Amount", clickedexpenses.getAmount());
                 intentEdit.putExtra("Mode", clickedexpenses.getMode());
 
+
                 startActivityForResult(intentEdit, EDIT_RECYCLER_VIEW_ITEM_CODE);
             }
         });
@@ -147,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             // word.setCategory(data.getStringExtra(NewEditWordActivity.EXTRA_REPLY));
 
             String notetext = data.getStringExtra("Note");
-            Float amountf = (Float) data.getFloatExtra("Amount", 1);
+            Float amountf = data.getFloatExtra("Amount", 1);
             String datetext = data.getStringExtra("Date");
             String cattext = data.getStringExtra("Category");
             String subcattext = data.getStringExtra("SubCat");
@@ -172,6 +209,15 @@ public class MainActivity extends AppCompatActivity {
 
 
             mWordViewModel.insert(word);
+
+           /* List<String> myList1=mWordViewModel.getCat();
+            for(int i=0; i <=10; i++) {
+                Log.d(TAG, "country:" + myList1.get(i));
+            }*/
+
+
+
+
         } else if (requestCode == EDIT_RECYCLER_VIEW_ITEM_CODE && resultCode == RESULT_OK) {
 
             int ID =data.getIntExtra("ID",-1);
@@ -180,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             if (ID != -1) {
                 Word word = new Word();
                 String notetext = data.getStringExtra("Note");
-                Float amountf = (Float) data.getFloatExtra("Amount", 1);
+                Float amountf = data.getFloatExtra("Amount", 1);
                 String datetext = data.getStringExtra("Date");
                 String cattext = data.getStringExtra("Category");
                 String subcattext = data.getStringExtra("SubCat");
@@ -213,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(
                     getApplicationContext(),
-                    "Entry not save",
+                    "Entry not saved",
                     Toast.LENGTH_LONG).show();
         }
     }
