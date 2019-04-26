@@ -99,28 +99,30 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
 
             //            if (mDao.getAnyWord().length > 1) {
-            if (5 < 1) {
+            if (5 > 1) {
 
                 Word word = new Word();
-                word.setSubCat("description1");
-                word.setAmount(345);
+                word.setCategory("Maintenance");
+                word.setSubCat("Princeton");
+                word.setAmount(15000);
                 Date date = java.util.Calendar.getInstance().getTime();
                 word.setDateentry(date);
                 word.setMode("Cash");
-                word.setNote("this is the expense");
+                word.setNote("this is the expense for q1");
 
                 mDao.insert(word);
 
                 word = new Word();
-                word.setSubCat("description2");
-                word.setAmount(90000);
+                word.setCategory("Utilties");
+                word.setSubCat("Phone");
+                word.setAmount(400);
 
                 Date date1 = java.util.Calendar.getInstance().getTime();
                 word.setDateentry(date1);
 
                 // word.setDateentry("24");
-                word.setMode("CArd");
-                word.setNote("these are the notes that we can show");
+                word.setMode("Paytm");
+                word.setNote("paid for june");
 
                 mDao.insert(word);
 

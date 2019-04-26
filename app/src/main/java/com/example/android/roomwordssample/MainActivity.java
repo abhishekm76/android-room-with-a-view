@@ -16,7 +16,6 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -52,7 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    Set<String> hash_Set = new HashSet<String>();
+    Set<String> cat_Name = new HashSet<String>();
+    Set<String> subcat_Name = new HashSet<String>();
+    Set<String> mode_Name = new HashSet<String>();
+
+   // cat_Name.add(getResources().getStringArray(R.array.subcategory);
+   //                 subcat_Name.add("subCat");
+   //     mode_Name.add("Mode");
+
 
     private WordViewModel mWordViewModel;
     public static final String TAG ="Test";
@@ -102,8 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 for (int counter=0; counter<words.size(); counter++){
-                    Log.d ("sizer", words.get(counter).getCategory());
-                    hash_Set.add(words.get(counter).getCategory());
+//                    Log.d ("sizer", words.get(counter).getCategory());
+                    cat_Name.add(words.get(counter).getCategory());
+                    subcat_Name.add(words.get(counter).getSubCat());
+                    mode_Name.add(words.get(counter).getMode());
 
 
                 }
@@ -116,13 +124,22 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] categoryNames = hash_Set.toArray(new String[hash_Set.size()]);
 
-                Log.d("hasset",hash_Set.toString());
+
+
+
+
+                String[] categoryNames = cat_Name.toArray(new String[cat_Name.size()]);
+                String[] subcategoryNames = subcat_Name.toArray(new String[subcat_Name.size()]);
+                String[] modeNames = mode_Name.toArray(new String[mode_Name.size()]);
+
+                Log.d("hasset", mode_Name.toString());
 
 
                 Intent intent = new Intent(MainActivity.this, NewEditWordActivity.class);
                 intent.putExtra("catArray" , categoryNames);
+                intent.putExtra("subcatArray" , subcategoryNames);
+                intent.putExtra("modeArray" , modeNames);
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
