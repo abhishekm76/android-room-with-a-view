@@ -185,6 +185,14 @@ public class MainActivity extends AppCompatActivity {
                 intentEdit.putExtra("Amount", clickedexpenses.getAmount());
                 intentEdit.putExtra("Mode", clickedexpenses.getMode());
 
+                String[] categoryNames = cat_Name.toArray(new String[cat_Name.size()]);
+                String[] subcategoryNames = subcat_Name.toArray(new String[subcat_Name.size()]);
+                String[] modeNames = mode_Name.toArray(new String[mode_Name.size()]);
+
+                intentEdit.putExtra("catArray" , categoryNames);
+                intentEdit.putExtra("subcatArray" , subcategoryNames);
+                intentEdit.putExtra("modeArray" , modeNames);
+
 
                 startActivityForResult(intentEdit, EDIT_RECYCLER_VIEW_ITEM_CODE);
             }

@@ -89,7 +89,7 @@ public class NewEditWordActivity extends AppCompatActivity {
             subcatautotext.setAdapter(subcatadapter);
             modeautotext.setAdapter(modeadapter);
 
-            Log.d("passedStringArray", category.toString() + subcategory.toString() + modelist.toString());
+            Log.d("passedStringArray", category[0].toString() + subcategory.toString() + modelist.toString());
 
         }
 
