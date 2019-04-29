@@ -64,9 +64,9 @@ public class NewEditWordActivity extends AppCompatActivity {
         meditnote = findViewById(R.id.editTextNote);
         meditamount = findViewById(R.id.editTextAmount);
         meditdate = findViewById(R.id.editTextDate);
-        meditCat = findViewById(R.id.spinnerCategory);
-        meditSubCat = findViewById(R.id.spinnerSubcat);
-        mspinmode = findViewById(R.id.spinnerMode);
+        //meditCat = findViewById(R.id.spinnerCategory);
+      //  meditSubCat = findViewById(R.id.spinnerSubcat);
+      //  mspinmode = findViewById(R.id.spinnerMode);
         catautotext = findViewById(R.id.catautotext);
         subcatautotext = findViewById(R.id.subcatautotext);
         modeautotext = findViewById(R.id.modeautotext);
@@ -89,7 +89,7 @@ public class NewEditWordActivity extends AppCompatActivity {
             subcatautotext.setAdapter(subcatadapter);
             modeautotext.setAdapter(modeadapter);
 
-            Log.d("passedStringArray", category[0].toString() + subcategory.toString() + modelist.toString());
+//            Log.d("passedStringArray", category[0].toString() + subcategory.toString() + modelist.toString());
 
         }
 
@@ -192,6 +192,19 @@ public class NewEditWordActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        final Button buttonCancel = findViewById(R.id.buttoncancel);
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent replyIntent = new Intent();
+                setResult(RESULT_CANCELED, replyIntent);
+                finish();
+            }
+        });
+
     }
 }
 

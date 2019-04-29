@@ -235,6 +235,12 @@ public class MainActivity extends AppCompatActivity {
 
             mWordViewModel.insert(word);
 
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Entry Saved",
+                    Toast.LENGTH_SHORT).show();
+
+
            /* List<String> myList1=mWordViewModel.getCat();
             for(int i=0; i <=10; i++) {
                 Log.d(TAG, "country:" + myList1.get(i));
@@ -277,6 +283,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 mWordViewModel.update(word);
+                Toast.makeText(
+                        getApplicationContext(),
+                        "Entry Updated",
+                        Toast.LENGTH_SHORT).show();
 
             }
 
@@ -285,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(
                     getApplicationContext(),
                     "Entry not saved",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

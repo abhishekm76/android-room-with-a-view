@@ -8,59 +8,60 @@
     >
 
 
-
-    <Spinner
+   <!-- <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
 
         android:entries="@array/category"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        tools:layout_editor_absoluteY="517dp" />
 
     <Spinner
         android:id="@+id/spinnerSubcat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
 
         android:entries="@array/subcategory"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonsave" />
 
     <Spinner
         android:id="@+id/spinnerMode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
 
         android:entries="@array/mode"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerSubcat" />
-
+-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
 
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerMode"
-        app:layout_constraintStart_toStartOf="@+id/spinnerMode"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerMode">
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modeautotext">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextNote"
@@ -76,13 +77,15 @@
 
 
 
+
     <Button
         android:id="@+id/buttoncancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+        android:text="Cancel"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintEnd_toStartOf="@+id/buttonsave"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
@@ -91,12 +94,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="@+id/buttoncancel"
         app:layout_constraintEnd_toEndOf="parent" />
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -106,11 +111,11 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editTextDate"
-            android:inputType="date"
-            android:hint="Enter the date" />
+            android:hint="Enter the date"
+            android:inputType="date" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -158,15 +163,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
 
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:completionThreshold="1"
         android:hint="Select category of expense"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonsave" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
     <com.example.android.roomwordssample.InstantAutoCompleteTextView
         android:id="@+id/subcatautotext"
