@@ -1,0 +1,9 @@
+ToDo    card view '
+Todo    delete all
+Todo    test with blank database
+ToDo    settings section
+ ToDo   graphs
+  todo  Search
+  Todo  remove extra methods / layout files etc
+  Todo make activity code smaller
+
