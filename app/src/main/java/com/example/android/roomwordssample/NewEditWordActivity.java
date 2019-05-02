@@ -205,6 +205,29 @@ public class NewEditWordActivity extends AppCompatActivity {
             }
         });
 
+
+        final Button buttonGraph = findViewById(R.id.buttonGraph);
+
+        buttonGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               openActivityGraph();
+            }
+        });
+
+
+
+
+
+
     }
+
+    public void openActivityGraph(){
+        Intent intent = new Intent(this, MPAndroidGraph.class);
+        startActivity(intent);
+
+    }
+
+
 }
 

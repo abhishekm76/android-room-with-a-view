@@ -24,7 +24,10 @@ limitations under the License. -->
     <string name="value">amount</string>
     <string name="noteline">note</string>
     <string name="edit_text_new_word">Enter a new word</string>
-
+    <string name="all_data">All data</string>
+    <string name="this_month">this month</string>
+    <string name="today">today</string>
+    <string name="thisyear">2019</string>
 
 
     <string-array name="category">

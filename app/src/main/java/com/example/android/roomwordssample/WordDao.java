@@ -29,7 +29,7 @@ import java.util.List;
 
 /**
  * The Room Magic is in this file, where you map a Java method call to an SQL query.
- *
+ * <p>
  * When you are using complex data types, such as Date, you have to also supply type converters.
  * To keep this example basic, no types that require type converters are used.
  * See the documentation at
@@ -45,6 +45,11 @@ public interface WordDao {
     // we are notified whenever any of the database contents have changed.
     @Query("SELECT * from word_table ORDER BY dateentry DESC")
     LiveData<List<Word>> getAlphabetizedWords();
+
+
+    @Query("SELECT ExpenseID,amount, category, SUM(amount) AS total from word_table "+" GROUP BY category "+" ORDER BY category ")
+    LiveData<List<Word>> getCatTotal();
+
 
     // We do not need a conflict strategy, because the word is our primary key, and you cannot
     // add two items with the same primary key to the database. If the table has more than one
@@ -63,13 +68,13 @@ public interface WordDao {
     void deleteByUserId(long expenseID);
 
     @Query("SELECT *  FROM word_table")
-    Word[] getDisCat();
+    List<Word> getAllExpenses();
 
     @Update
     void updateWord(Word word);
 
     @Query("SELECT note from word_table")
-     List<String> getCategory();
+    List<String> getCategory();
 
 
 }

@@ -19,6 +19,7 @@ package com.example.android.roomwordssample;
 import androidx.room.ColumnInfo;
 import androidx.room.Delete;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
@@ -50,6 +51,8 @@ public class Word {
     private String mode;
     private Date dateentry;
     private float amount;
+
+    public float total;
 
 
     public Word() {

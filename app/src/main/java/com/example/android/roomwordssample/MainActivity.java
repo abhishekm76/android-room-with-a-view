@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int EDIT_RECYCLER_VIEW_ITEM_CODE = 2;
+    List<Word> AllExpenses;
 
 
 
@@ -95,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
        // Log.d("check",wordsextract.toString());
 
         // Add an observer on the LiveData returned by getAlphabetizedWords.
@@ -105,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(@Nullable final List<Word> words) {
                 // Update the cached copy of the words in the adapter.
                 adapter.setWords(words);
+
+
+
 
 
                 for (int counter=0; counter<words.size(); counter++){

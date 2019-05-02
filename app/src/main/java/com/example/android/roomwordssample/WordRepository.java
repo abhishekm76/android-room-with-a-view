@@ -20,6 +20,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -35,6 +36,8 @@ class WordRepository {
 
     private WordDao mWordDao;
     private LiveData<List<Word>> mAllWords;
+    private LiveData<List<Word>> mCatTotal;
+    List<Word> mWordList;
 
 
     List<String> DisCat = new ArrayList<String>();
@@ -48,16 +51,33 @@ class WordRepository {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
         mAllWords = mWordDao.getAlphabetizedWords();
+        mCatTotal =mWordDao.getCatTotal();
+
+      // mWordList =mWordDao.getAllExpenses();
 //        DisCat=mWordDao.getCategory();
-//        Log.d("this is my array", "arr: " + DisCat.get(1).toString());
+
    }
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    LiveData<List<Word>> getAllWords() {
-        return mAllWords;
+    LiveData<List<Word>> getAllWords() {return mAllWords;}
+    LiveData<List<Word>> getCatTotal() {return mCatTotal;}
+
+
+
+/*
+
+    List<Word> getAllExpenses() {
+         new getExpensesAsyncTask(mWordDao).execute();
+
+
+
+     //   Log.d("this is my array", "arr: " + mWordList.get(1).toString());
+
+        return mWordList;
     }
 
+*/
 
 
    // List<String> mAllCat = mWordDao.getCategory();
@@ -135,4 +155,45 @@ class WordRepository {
         }
     }
 
+/*
+
+    private static class getExpensesAsyncTask extends AsyncTask<Word, Void, List<Word>> {
+        private WordDao mAsynTaskDao;
+        ProgressDialog dialog = new ProgressDialog();
+
+
+
+        public getExpensesAsyncTask(WordDao mWordDao) {
+            mAsynTaskDao= mWordDao;
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setIndeterminate(true);
+            dialog.setMessage("Please Wait...");
+            dialog.setTitle("Loading Messages");
+            dialog.setCancelable(true);
+            dialog.show();
+
+
+        }
+
+        @Override
+        protected List<Word> doInBackground(Word... words) {
+           mWordList=  mAsynTaskDao.getAllExpenses();
+//            Log.d("this is my array", "arr: " + mWordList.get(1).toString());
+            return mWordList;
+        }
+
+        @Override
+        protected void onPostExecute(List<Word> words) {
+            super.onPostExecute(words);
+            mWordList=words;
+            dialog.dismiss();
+        }
+    }
+
+*/
 }

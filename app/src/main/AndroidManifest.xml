@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewEditWordActivity"></activity>
+        <activity android:name=".MPAndroidGraph"></activity>
     </application>
 
 </manifest>
