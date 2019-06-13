@@ -28,6 +28,8 @@ limitations under the License. -->
     <string name="this_month">this month</string>
     <string name="today">today</string>
     <string name="thisyear">2019</string>
+    <string name="enter_expenses">Enter Expenses</string>
+    <string name="view_graphs">View Graphs</string>
 
 
     <string-array name="category">
@@ -43,12 +45,12 @@ limitations under the License. -->
     </string-array>
 
     <string-array name="subcategory">
-    <item>Princeton</item>
-    <item>Escape</item>
-    <item>Carlton</item>
-    <item>Prithu</item>
-    <item>Phone</item>
-    <item>Electricity</item>
+        <item>Princeton</item>
+        <item>Escape</item>
+        <item>Carlton</item>
+        <item>Prithu</item>
+        <item>Phone</item>
+        <item>Electricity</item>
     </string-array>
 
     <string-array name="mode">
@@ -59,8 +61,6 @@ limitations under the License. -->
         <item>Paytm</item>
         <item>Kotak</item>
     </string-array>
-
-
 
 
 </resources>

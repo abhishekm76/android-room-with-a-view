@@ -9,8 +9,9 @@
         android:roundIcon="@drawable/ic_roundicons_freeset_11"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".LaunchApp"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,8 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewEditWordActivity"></activity>
-        <activity android:name=".MPAndroidGraph"></activity>
+        <activity android:name=".NewEditWordActivity" />
+        <activity android:name=".MPAndroidGraph" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
