@@ -9,7 +9,14 @@
         android:roundIcon="@drawable/ic_roundicons_freeset_11"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".LaunchApp">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.roomwordssample.LaunchApp" />
+        </activity>
         <activity
             android:name=".LaunchApp"
             android:label="@string/app_name"

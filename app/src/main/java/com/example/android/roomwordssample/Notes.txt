@@ -1,9 +1,13 @@
-ToDo    card view '
+
 Todo    delete all
 Todo    test with blank database
-ToDo    settings section
  ToDo   graphs
   todo  Search
   Todo  remove extra methods / layout files etc
   Todo make activity code smaller
 
+// TODO: 31-07-2019 format the recycler view professionally perhaps using a cardview
+// TODO: 31-07-2019 add graph filtering capability
+// TODO: 31-07-2019  have images for categories of expenses
+// TODO: 31-07-2019  have a training start or help screen
+// TODO: 31-07-2019 settings for choosing currency and date format

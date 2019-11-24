@@ -99,7 +99,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             String strDate = dateFormat.format(current.getDateentry());
             holder.itemDate.setText(strDate);
 
-            DateFormat monthFormat = new SimpleDateFormat("MMMM");
+            DateFormat monthFormat = new SimpleDateFormat("MMM");
             String strDate1 = monthFormat.format(current.getDateentry());
             holder.itemMonth.setText(strDate1);
 

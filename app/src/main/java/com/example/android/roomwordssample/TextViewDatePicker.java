@@ -42,6 +42,9 @@ public class TextViewDatePicker
 
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_SERVER_PATTERN);
         mView.setText(formatter.format(date));
+
+
+
     }
 
     @Override

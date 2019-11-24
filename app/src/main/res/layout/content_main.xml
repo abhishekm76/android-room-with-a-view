@@ -36,4 +36,5 @@ limitations under the License. -->
         android:background="@android:color/darker_gray"
         tools:listitem="@layout/recyclerview_item" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>

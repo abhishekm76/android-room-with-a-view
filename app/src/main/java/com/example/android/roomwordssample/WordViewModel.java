@@ -20,6 +20,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class WordViewModel extends AndroidViewModel {
     // - Repository is completely separated from the UI through the ViewModel.
     private LiveData<List<Word>> mAllWords;
     private LiveData<List<Word>> mCatTotal;
+    private LiveData<List<Word>> mExpFiltered;
 
     private List<Word> mAllExpenses;
 
@@ -44,6 +46,9 @@ public class WordViewModel extends AndroidViewModel {
         mRepository = new WordRepository(application);
         mAllWords = mRepository.getAllWords();
         mCatTotal = mRepository.getCatTotal();
+
+
+
      // mAllExpenses=mRepository.getAllExpenses();
 
     }
@@ -52,6 +57,12 @@ public class WordViewModel extends AndroidViewModel {
         return mAllWords;
     }
     LiveData<List<Word>> getCatTotal() { return mCatTotal; }
+
+    LiveData<List<Word>> getExpFilt(Date start, Date end) {
+        mExpFiltered = mRepository.getExpFilt(start, end);
+        return mExpFiltered; }
+
+
 
  /*  List<Word> getAllExpenses(){
         return mAllExpenses;

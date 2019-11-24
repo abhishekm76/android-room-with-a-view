@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //decoration
-        RecyclerView.ItemDecoration dividingline = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividingline);
+      //  RecyclerView.ItemDecoration dividingline = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+     //   recyclerView.addItemDecoration(dividingline);
 
 
 

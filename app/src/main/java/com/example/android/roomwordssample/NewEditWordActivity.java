@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -106,7 +107,10 @@ public class NewEditWordActivity extends AppCompatActivity {
 
 
             meditnote.setText(note);
-            meditamount.setText(String.valueOf(amount));
+
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+            String currAmount = currencyFormat.format(amount);
+            meditamount.setText(String.valueOf(currAmount));
 
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(date);

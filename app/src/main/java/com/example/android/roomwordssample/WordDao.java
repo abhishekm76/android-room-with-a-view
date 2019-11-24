@@ -25,6 +25,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,6 +50,11 @@ public interface WordDao {
 
     @Query("SELECT ExpenseID,amount, category, SUM(amount) AS total from word_table "+" GROUP BY category "+" ORDER BY category ")
     LiveData<List<Word>> getCatTotal();
+
+
+    @Query("SELECT ExpenseID,dateentry, amount, category, SUM(amount) AS total from word_table WHERE dateentry BETWEEN :minDate AND :maxDate "+" GROUP BY category "+" ORDER BY category ")
+    LiveData<List<Word>> loadAllExpensesBetweenDates(Date minDate, Date maxDate);
+
 
 
     // We do not need a conflict strategy, because the word is our primary key, and you cannot

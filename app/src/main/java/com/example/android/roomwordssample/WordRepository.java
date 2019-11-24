@@ -25,6 +25,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +39,7 @@ class WordRepository {
     private WordDao mWordDao;
     private LiveData<List<Word>> mAllWords;
     private LiveData<List<Word>> mCatTotal;
+    private LiveData<List<Word>> mExpFilt;
     List<Word> mWordList;
 
 
@@ -53,6 +56,10 @@ class WordRepository {
         mAllWords = mWordDao.getAlphabetizedWords();
         mCatTotal =mWordDao.getCatTotal();
 
+
+
+
+
       // mWordList =mWordDao.getAllExpenses();
 //        DisCat=mWordDao.getCategory();
 
@@ -62,7 +69,9 @@ class WordRepository {
     // Observed LiveData will notify the observer when the data has changed.
     LiveData<List<Word>> getAllWords() {return mAllWords;}
     LiveData<List<Word>> getCatTotal() {return mCatTotal;}
-
+    LiveData<List<Word>> getExpFilt(Date start, Date end) {
+        mExpFilt=mWordDao.loadAllExpensesBetweenDates(start ,end);
+        return mExpFilt;}
 
 
 /*
