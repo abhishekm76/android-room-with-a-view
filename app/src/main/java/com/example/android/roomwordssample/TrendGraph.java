@@ -36,7 +36,6 @@ public class TrendGraph extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trend_graph);
-      //  barChart = findViewById(R.id.TrendChart);
         barChart = findViewById(R.id.TrendChart);
         start_date=findViewById(R.id.selectStartDateForTrend);
         end_date=findViewById(R.id.selectEndDateForTrend);
@@ -79,27 +78,20 @@ public class TrendGraph extends AppCompatActivity {
     private void setDates(){
 
         Calendar cal = Calendar.getInstance();
-        mYear = cal.get(Calendar.YEAR);
-        mMonth = cal.get(Calendar.MONTH) + 1;
-        mDay = cal.get(Calendar.DAY_OF_MONTH);
-        end_date.setText(mDay + "-" + mMonth + "-" + mYear);
-
-        TextViewDatePicker editTextEndDatePicker = new TextViewDatePicker(this, end_date);
-
         cal.set(Calendar.DAY_OF_YEAR, 1);
-
-        mYear = cal.get(Calendar.YEAR);
-        mMonth = cal.get(Calendar.MONTH) + 1;
-        mDay = cal.get(Calendar.DAY_OF_MONTH);
-        start_date.setText(mDay + "-" + mMonth + "-" + mYear);
-        TextViewDatePicker editTextStartDatePicker = new TextViewDatePicker(this, start_date);
-
 
         Date start = cal.getTime();
         Date end = new Date();
 
         String startDate = start.toString();
         String endDate = end.toString();
+
+        TextViewDatePicker editTextEndDatePicker = new TextViewDatePicker(this, end_date);
+        TextViewDatePicker editTextStartDatePicker = new TextViewDatePicker(this, start_date);
+
+
+        start_date.setText(startDate);
+        end_date.setText(endDate);
 
         getDataAndGraphIt(startDate,endDate);
 
