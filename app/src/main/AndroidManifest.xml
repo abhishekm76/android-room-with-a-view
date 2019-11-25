@@ -30,6 +30,7 @@
         <activity android:name=".NewEditWordActivity" />
         <activity android:name=".MPAndroidGraph" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".TrendGraph"/>
     </application>
 
 </manifest>

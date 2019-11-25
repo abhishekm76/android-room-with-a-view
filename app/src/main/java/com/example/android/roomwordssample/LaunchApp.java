@@ -9,17 +9,24 @@ import android.widget.Button;
 
 public class LaunchApp extends AppCompatActivity implements View.OnClickListener {
 
+    private Button buttonGraph;
+    private Button buttonExp;
+    private Button buttonSettings;
+    private Button buttonTrend;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch_app);
-        final Button buttonGraph = findViewById(R.id.viewGraph);
-        final Button buttonExp = findViewById(R.id.viewExpenses);
-        final Button buttonSettings = findViewById(R.id.settings);
+        buttonGraph = findViewById(R.id.viewGraph);
+        buttonExp = findViewById(R.id.viewExpenses);
+        buttonSettings = findViewById(R.id.settings);
+        buttonTrend = findViewById(R.id.buttonTrend);
 
         buttonGraph.setOnClickListener(this);
         buttonExp.setOnClickListener(this);
         buttonSettings.setOnClickListener(this);
+        buttonTrend.setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +45,11 @@ public class LaunchApp extends AppCompatActivity implements View.OnClickListener
             case R.id.settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
+                break;
+
+            case R.id.buttonTrend:
+                Intent intentTrend = new Intent(this, TrendGraph.class);
+                startActivity(intentTrend);
                 break;
         }
 
