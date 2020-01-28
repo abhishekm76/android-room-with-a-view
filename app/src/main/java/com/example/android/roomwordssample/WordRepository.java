@@ -40,6 +40,7 @@ class WordRepository {
     private LiveData<List<Word>> mAllWords;
     private LiveData<List<Word>> mCatTotal;
     private LiveData<List<Word>> mExpFilt;
+    private LiveData<List<Word>> mMonthTotal;
     List<Word> mWordList;
 
 
@@ -73,6 +74,9 @@ class WordRepository {
         mExpFilt=mWordDao.loadAllExpensesBetweenDates(start ,end);
         return mExpFilt;}
 
+        LiveData<List<Word>> getMonthTotal(Date start, Date end) {
+        mMonthTotal=mWordDao.loadAllExpensesByMonth(start ,end);
+        return mMonthTotal;}
 
 /*
 

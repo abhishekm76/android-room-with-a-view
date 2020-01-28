@@ -73,19 +73,27 @@ public class TrendGraph extends AppCompatActivity {
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        mWordViewModel.getExpFilt(start , end).observe(this, new Observer<List<Word>>() {
+//        mWordViewModel.getExpFilt(start , end).observe(this, new Observer<List<Word>>() {
+
+        mWordViewModel.getMonthTotal(start , end).observe(this, new Observer<List<Word>>() {
+
             @Override
             public void onChanged(@Nullable final List<Word> words) {
                 // Update the cached copy of the words in the adapter.
                 //adapter.setWords(words);
                 dataList=words;
+                Log.d("Data",words.toString());
 
                 ArrayList<BarEntry> entries = new ArrayList<>();
                 ArrayList<String> labels = new ArrayList<String>();
 
                 for (int i = 0; i < dataList.size (); i++) {
                     entries.add(new BarEntry(dataList.get(i).total, i));
-                    labels.add(dataList.get(i).getCategory());
+                    labels.add("lable");
+                    Log.d("Data", String.valueOf(dataList));
+
+
+
                 }
                 drawGraph(entries,labels);
             }

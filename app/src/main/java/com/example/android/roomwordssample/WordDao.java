@@ -55,6 +55,8 @@ public interface WordDao {
     @Query("SELECT ExpenseID,dateentry, amount, category, SUM(amount) AS total from word_table WHERE dateentry BETWEEN :minDate AND :maxDate "+" GROUP BY category "+" ORDER BY category ")
     LiveData<List<Word>> loadAllExpensesBetweenDates(Date minDate, Date maxDate);
 
+    @Query("SELECT  ExpenseID, amount, strftime('%m',dateentry) as month,  SUM(amount) AS total from word_table WHERE dateentry BETWEEN :minDate AND :maxDate "+" GROUP BY month "+" ORDER BY category ")
+    LiveData<List<Word>> loadAllExpensesByMonth(Date minDate, Date maxDate);
 
 
     // We do not need a conflict strategy, because the word is our primary key, and you cannot

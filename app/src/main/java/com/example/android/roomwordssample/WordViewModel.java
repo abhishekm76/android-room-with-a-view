@@ -38,6 +38,7 @@ public class WordViewModel extends AndroidViewModel {
     private LiveData<List<Word>> mAllWords;
     private LiveData<List<Word>> mCatTotal;
     private LiveData<List<Word>> mExpFiltered;
+    private LiveData<List<Word>> mMonthTotal;
 
     private List<Word> mAllExpenses;
 
@@ -62,6 +63,9 @@ public class WordViewModel extends AndroidViewModel {
         mExpFiltered = mRepository.getExpFilt(start, end);
         return mExpFiltered; }
 
+    LiveData<List<Word>> getMonthTotal(Date start, Date end) {
+        mMonthTotal = mRepository.getMonthTotal(start, end);
+        return mMonthTotal; }
 
 
  /*  List<Word> getAllExpenses(){
