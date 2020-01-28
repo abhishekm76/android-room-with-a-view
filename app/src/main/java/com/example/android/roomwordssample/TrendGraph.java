@@ -1,14 +1,23 @@
 package com.example.android.roomwordssample;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -43,26 +52,29 @@ public class TrendGraph extends AppCompatActivity {
     }
 
 
-    private void getDataAndGraphIt(String start, String end){
+    private void getDataAndGraphIt(Date start, Date end){
 
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(8f, 0));
-        entries.add(new BarEntry(2f, 1));
-        entries.add(new BarEntry(5f, 2));
-        entries.add(new BarEntry(20f, 3));
-        entries.add(new BarEntry(15f, 4));
-        entries.add(new BarEntry(19f, 5));
+        mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+        // Add an observer on the LiveData returned by getAlphabetizedWords.
+        // The onChanged() method fires when the observed data changes and the activity is
+        // in the foreground.
+        mWordViewModel.getExpFilt(start , end).observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(@Nullable final List<Word> words) {
+                // Update the cached copy of the words in the adapter.
+                //adapter.setWords(words);
+                dataList=words;
 
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("2016");
-        labels.add("2015");
-        labels.add("2014");
-        labels.add("2013");
-        labels.add("2012");
-        labels.add("2011");
+                ArrayList<BarEntry> entries = new ArrayList<>();
+                ArrayList<String> labels = new ArrayList<String>();
 
-        drawGraph(entries,labels);
-
+                for (int i = 0; i < dataList.size (); i++) {
+                    entries.add(new BarEntry(dataList.get(i).total, i));
+                    labels.add(dataList.get(i).getCategory());
+                }
+                drawGraph(entries,labels);
+            }
+        });
     }
 
     private void drawGraph(ArrayList entries, ArrayList labels){
@@ -72,29 +84,20 @@ public class TrendGraph extends AppCompatActivity {
         barChart.setDescription("Expense per month");  // set the description
         bardataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
         barChart.animateY(1500);
-
     }
 
     private void setDates(){
-
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_YEAR, 1);
-
         Date start = cal.getTime();
         Date end = new Date();
-
         String startDate = start.toString();
         String endDate = end.toString();
-
         TextViewDatePicker editTextEndDatePicker = new TextViewDatePicker(this, end_date);
         TextViewDatePicker editTextStartDatePicker = new TextViewDatePicker(this, start_date);
-
-
         start_date.setText(startDate);
         end_date.setText(endDate);
-
-        getDataAndGraphIt(startDate,endDate);
-
+        getDataAndGraphIt(start,end);
     }
 
 
