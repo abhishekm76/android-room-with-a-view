@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -20,6 +22,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +43,7 @@ public class TrendGraph extends AppCompatActivity {
     boolean isDatabasePresent;
     String formattedDate, month;
     EditText start_date, end_date;
+    Button buttonRefresh;
 
 
     @Override
@@ -49,6 +54,16 @@ public class TrendGraph extends AppCompatActivity {
         start_date=findViewById(R.id.selectStartDateForTrend);
         end_date=findViewById(R.id.selectEndDateForTrend);
         setDates();
+
+        buttonRefresh = findViewById(R.id.refreshTrendGraphs);
+
+        buttonRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDateFilter();
+            }
+        });
+
     }
 
 
@@ -100,5 +115,24 @@ public class TrendGraph extends AppCompatActivity {
         getDataAndGraphIt(start,end);
     }
 
+
+    public void setDateFilter()  {
+        String expectedPattern = "dd-MM-yyyy";
+        SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
+        try
+        {
+            // (2) give the formatter a String that matches the SimpleDateFormat pattern
+            String startDate = String.valueOf(start_date.getText());
+            Date start = formatter.parse(startDate);
+            String endDate = String.valueOf(end_date.getText());
+            Date end = formatter.parse(endDate);
+            getDataAndGraphIt(start, end);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 
 }
