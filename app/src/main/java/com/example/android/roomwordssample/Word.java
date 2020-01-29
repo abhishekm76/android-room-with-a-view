@@ -55,6 +55,10 @@ public class Word {
     public float total;
 
 
+    @Ignore
+    private String month;
+
+
     public Word() {
 
     }
@@ -86,8 +90,13 @@ public class Word {
     public void setAmount(float pamount) {  this.amount = pamount;   }
 
 
+    public String getMonth() {
+        return month;
+    }
 
-
+    public void setMonth(String month) {
+        this.month = month;
+    }
 
 
 }

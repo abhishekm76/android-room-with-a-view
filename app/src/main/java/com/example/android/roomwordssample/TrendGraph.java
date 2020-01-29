@@ -89,8 +89,9 @@ public class TrendGraph extends AppCompatActivity {
 
                 for (int i = 0; i < dataList.size (); i++) {
                     entries.add(new BarEntry(dataList.get(i).total, i));
-                    labels.add("lable");
-                    Log.d("Data", String.valueOf(dataList));
+                    labels.add((dataList.get(i).getMonth()));
+                   // labels.add(dataList.get(i).getCategory());
+                    Log.d("Data", String.valueOf(dataList.size())+"index"+i);
 
 
 
