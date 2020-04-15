@@ -87,4 +87,6 @@ public class WordViewModel extends AndroidViewModel {
 
     //public List<String> getCategory() {return mCat;}
 
+    public void deleteAll() {mRepository.deleteAllExpense();}
+
 }

@@ -1,9 +1,11 @@
 package com.example.android.roomwordssample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,7 +14,8 @@ public class LaunchApp extends AppCompatActivity implements View.OnClickListener
     private Button buttonGraph;
     private Button buttonExp;
     private Button buttonSettings;
-    private Button buttonTrend;
+    private Button buttonTrend,buttonDeleteAll;
+    private WordViewModel mWordViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +25,13 @@ public class LaunchApp extends AppCompatActivity implements View.OnClickListener
         buttonExp = findViewById(R.id.viewExpenses);
         buttonSettings = findViewById(R.id.settings);
         buttonTrend = findViewById(R.id.buttonTrend);
+        buttonDeleteAll = findViewById(R.id.deleteAll);
 
         buttonGraph.setOnClickListener(this);
         buttonExp.setOnClickListener(this);
         buttonSettings.setOnClickListener(this);
         buttonTrend.setOnClickListener(this);
+        buttonDeleteAll.setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +56,14 @@ public class LaunchApp extends AppCompatActivity implements View.OnClickListener
                 Intent intentTrend = new Intent(this, TrendGraph.class);
                 startActivity(intentTrend);
                 break;
+
+            case R.id.deleteAll:
+                mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+                mWordViewModel.deleteAll();
+                Log.d("Test", "onClick: delete");
+                break;
+
+
         }
 
 
